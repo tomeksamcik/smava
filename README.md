@@ -29,14 +29,14 @@ Application consists of six modules, four from which build the web application, 
 
 #### Building application
 
-This will run the build and install all the <code>smava-parent</code> submodules in local Maven repository:
+This will run the build, test and install all the <code>smava-parent</code> submodules in local Maven repository:
 
 ```
 cd smava-parent
 mvn clean install
 ```
 
-This will build and install standalone JMS consumer module (note that test requires a running instance of ActiveMQ broker on port <code>61616</code>, you can ignore that requirement by skipping tests with <code>-DskipTests</code> flag)
+This will build, test and install standalone JMS consumer module (note that test requires a running instance of ActiveMQ broker on port <code>61616</code>, you can ignore that requirement by skipping tests with <code>-DskipTests</code> flag)
 
 ```
 cd smava-jms-consumer
