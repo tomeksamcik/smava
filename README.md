@@ -92,4 +92,4 @@ Confugiration has to be made in <code>de.smava.Application</code> class in <code
 * Swagger API descriptor is available at <code>http://localhost:8080/v2/api-docs?group=account</code>
 * Account API is available at <code>http://localhost:8080/account</code>
 * The whole code is not java documented, only meaningful parts of API
-* Message broker connection is not configured, Spring Boot attempts to connect to local instance
+* Message broker connection is auto-configured, Spring Boot attempts to connect to local instance
