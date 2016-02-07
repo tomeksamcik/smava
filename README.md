@@ -91,3 +91,5 @@ return new AccountSessionService();
 * Swagger UI is available after runnig the application at <code>http://localhost:8080/swagger-ui.html</code>
 * Swagger API descriptor is available at <code>http://localhost:8080/v2/api-docs?group=account</code>
 * Account API is available at <code>http://localhost:8080/account</code>
+* The whole code is not java documented, only meaningful parts of API
+* Message broker connection is not configured, Spring Boot attempts to connect to local instance
