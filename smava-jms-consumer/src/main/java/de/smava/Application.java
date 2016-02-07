@@ -20,7 +20,7 @@ public class Application {
 	
     @Bean
     public ConnectionFactory connectionFactory() {
-    	ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+    	ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
     	factory.setTrustAllPackages(true);
         return factory;
     }
