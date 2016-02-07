@@ -36,7 +36,7 @@ cd smava-parent
 mvn clean install
 ```
 
-This will build and install standalone JMS consumer module (note that test requires a running instance of ActiveMQ broker on port <code>63841</code>, you can ignore that requirement by skipping tests with <code>-DskipTests</code> flag)
+This will build and install standalone JMS consumer module (note that test requires a running instance of ActiveMQ broker on port <code>61616</code>, you can ignore that requirement by skipping tests with <code>-DskipTests</code> flag)
 
 ```
 cd smava-jms-consumer
