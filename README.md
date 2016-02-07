@@ -65,7 +65,7 @@ The only configuration needed is selecting data storage, it can either be a <cod
 
 Confugiration has to be made in <code>de.smava.Application</code> class in <code>smava-web</code> module.
 
-Persistent storage:
+###### Persistent storage:
 
 ```java
 @Bean
@@ -74,7 +74,7 @@ return new AccountPersistentService();
 }
 ```
 
-Session-based storage:
+###### Session-based storage:
 
 ```java
 @Bean
