@@ -3,10 +3,11 @@ package de.smava.data;
 /**
  * @author Tomek Samcik
  *
- * Exception thrown by the service layer indicating that
- * entity with the given id does not exist
+ *         Exception thrown by the service layer indicating that entity with the
+ *         given id does not exist
  */
-public class AccountServiceEntityNotFoundException extends AccountServiceException {
+public class AccountServiceEntityNotFoundException extends
+		AccountServiceException {
 
 	/**
 	 * 
@@ -16,5 +17,5 @@ public class AccountServiceEntityNotFoundException extends AccountServiceExcepti
 	public AccountServiceEntityNotFoundException(String msg) {
 		super(msg);
 	}
-	
+
 }

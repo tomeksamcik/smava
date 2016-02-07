@@ -24,21 +24,22 @@ import de.smava.data.AccountServiceException;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes=ApplicationSessionTest.class)
+@SpringApplicationConfiguration(classes = ApplicationSessionTest.class)
 @WebAppConfiguration
 public class AccountLoaderServiceSessionTest {
-	
-	private Logger log = Logger.getLogger(AccountLoaderServiceSessionTest.class);
-	
+
+	private Logger log = Logger
+			.getLogger(AccountLoaderServiceSessionTest.class);
+
 	@Autowired
 	private AccountLoaderService accountLoaderService;
 
 	@Autowired
 	private AccountService accountService;
-	
+
 	@InjectMocks
-	MockHttpSession session = new MockHttpSession();	
-	
+	MockHttpSession session = new MockHttpSession();
+
 	@Test
 	public void load() throws AccountServiceException {
 		accountLoaderService.load(session);
@@ -47,5 +48,5 @@ public class AccountLoaderServiceSessionTest {
 		assertNotNull(all);
 		assertEquals(all.size(), 6);
 	}
-	
+
 }

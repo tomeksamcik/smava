@@ -16,16 +16,14 @@ import javax.validation.constraints.Size;
 /**
  * @author Tomek Samcik
  *
- * Entity representing a bank account
+ *         Entity representing a bank account
  */
 @Entity
-@Table(
-	uniqueConstraints=
-		@UniqueConstraint(columnNames={"iban", "sessionId"})
-)
-@ApiModel(value="Account", description="Bank account entity")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "iban",
+		"sessionId" }))
+@ApiModel(value = "Account", description = "Bank account entity")
 public class Account implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -35,39 +33,39 @@ public class Account implements Serializable {
 	@GeneratedValue
 	@ApiModelProperty(value = "Account entity identifier")
 	private Long id;
-	
+
 	/**
 	 * International Bank Account Number
 	 */
 	@NotNull
-	@Size(min=1, max=100)
+	@Size(min = 1, max = 100)
 	@ApiModelProperty(value = "Account IBAN")
 	private String iban;
-	
+
 	/**
 	 * Business Identifier Code
 	 */
 	@NotNull
-	@Size(min=1, max=20)
+	@Size(min = 1, max = 20)
 	@ApiModelProperty(value = "Account BIC")
 	private String bic;
-	
+
 	/**
-	 * Client's session identifier 
+	 * Client's session identifier
 	 */
 	@ApiModelProperty(value = "Client's session identifier")
 	private String sessionId;
-	
+
 	public Account() {
 		//
 	}
-	
+
 	public Account(String bic, String iban, String sessionId) {
 		this.bic = bic;
 		this.iban = iban;
 		this.sessionId = sessionId;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -75,7 +73,7 @@ public class Account implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getIban() {
 		return iban;
 	}
@@ -102,8 +100,8 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", iban=" + iban + ", bic=" + bic + ", sessionId="
-				+ sessionId + "]";
+		return "Account [id=" + id + ", iban=" + iban + ", bic=" + bic
+				+ ", sessionId=" + sessionId + "]";
 	}
 
 	@Override

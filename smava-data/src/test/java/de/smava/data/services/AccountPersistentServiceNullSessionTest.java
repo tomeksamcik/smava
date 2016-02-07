@@ -27,40 +27,46 @@ import de.smava.data.AccountServiceNonUniqueException;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes=Application.class)
+@SpringApplicationConfiguration(classes = Application.class)
 public class AccountPersistentServiceNullSessionTest {
-	
-	private Logger log = Logger.getLogger(AccountPersistentServiceNullSessionTest.class);
-	
+
+	private Logger log = Logger
+			.getLogger(AccountPersistentServiceNullSessionTest.class);
+
 	@InjectMocks
-	MockHttpSession session = new MockHttpSession();		
-	
+	MockHttpSession session = new MockHttpSession();
+
 	@Autowired
 	@Qualifier("accountPersistentService")
 	private AccountService accountPersistentService;
-	
+
 	@Before
 	public void purge() throws AccountServiceException {
 		accountPersistentService.deleteAll(null);
 	}
-	
+
 	@Test
 	public void getAccounts() throws AccountServiceException {
 		List<Account> all = accountPersistentService.getAccounts(null);
 		log.info("all: " + all);
 		assertNotNull(all);
 	}
-	
-	@Test
-	public void getAccount() throws AccountServiceException, AccountServiceNonUniqueException, AccountServiceEntityNotFoundException {
-		Account added = accountPersistentService.addAccount(null, new Account("A", "1", null));
-		Account returned = accountPersistentService.getAccount(null, added.getId());
-		log.info("returned: " + returned);
-		assertEquals(added, returned);
-	}	
 
 	@Test
-	public void addAccount() throws AccountServiceException, AccountServiceNonUniqueException {
+	public void getAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException,
+			AccountServiceEntityNotFoundException {
+		Account added = accountPersistentService.addAccount(null, new Account(
+				"A", "1", null));
+		Account returned = accountPersistentService.getAccount(null,
+				added.getId());
+		log.info("returned: " + returned);
+		assertEquals(added, returned);
+	}
+
+	@Test
+	public void addAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException {
 		accountPersistentService.addAccount(null, new Account("A", "1", null));
 		List<Account> all = accountPersistentService.getAccounts(null);
 		log.info("all: " + all);
@@ -68,9 +74,13 @@ public class AccountPersistentServiceNullSessionTest {
 	}
 
 	@Test
-	public void updateAccount() throws AccountServiceException, AccountServiceNonUniqueException, AccountServiceEntityNotFoundException {
-		Account added = accountPersistentService.addAccount(null, new Account("A", "1", null));
-		Account updated = accountPersistentService.updateAccount(null, added.getId(), new Account("B", "1", null));
+	public void updateAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException,
+			AccountServiceEntityNotFoundException {
+		Account added = accountPersistentService.addAccount(null, new Account(
+				"A", "1", null));
+		Account updated = accountPersistentService.updateAccount(null,
+				added.getId(), new Account("B", "1", null));
 		List<Account> all = accountPersistentService.getAccounts(null);
 		log.info("added: " + added);
 		log.info("updated: " + updated);
@@ -82,9 +92,12 @@ public class AccountPersistentServiceNullSessionTest {
 	}
 
 	@Test
-	public void deleteAccount() throws AccountServiceException, AccountServiceNonUniqueException, AccountServiceEntityNotFoundException {
+	public void deleteAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException,
+			AccountServiceEntityNotFoundException {
 		log.info("delete: ");
-		Account added = accountPersistentService.addAccount(null, new Account("A", "1", null));
+		Account added = accountPersistentService.addAccount(null, new Account(
+				"A", "1", null));
 		List<Account> before = accountPersistentService.getAccounts(null);
 		accountPersistentService.deleteAccount(null, added.getId());
 		List<Account> after = accountPersistentService.getAccounts(null);
@@ -94,25 +107,33 @@ public class AccountPersistentServiceNullSessionTest {
 		assertEquals(after.size(), 0);
 	}
 
-	@Test(expected=AccountServiceNonUniqueException.class)
-	public void unique() throws AccountServiceException, AccountServiceNonUniqueException {
-		accountPersistentService.addAccount(session, new Account("A", "1", null));
-		accountPersistentService.addAccount(session, new Account("A", "1", null));
+	@Test(expected = AccountServiceNonUniqueException.class)
+	public void unique() throws AccountServiceException,
+			AccountServiceNonUniqueException {
+		accountPersistentService.addAccount(session,
+				new Account("A", "1", null));
+		accountPersistentService.addAccount(session,
+				new Account("A", "1", null));
 	}
 
-	@Test(expected=AccountServiceEntityNotFoundException.class)
-	public void updateNotFound() throws AccountServiceException, AccountServiceEntityNotFoundException, AccountServiceNonUniqueException {
-		accountPersistentService.updateAccount(null, 99l, new Account("A", "1", null));
+	@Test(expected = AccountServiceEntityNotFoundException.class)
+	public void updateNotFound() throws AccountServiceException,
+			AccountServiceEntityNotFoundException,
+			AccountServiceNonUniqueException {
+		accountPersistentService.updateAccount(null, 99l, new Account("A", "1",
+				null));
 	}
 
-	@Test(expected=AccountServiceEntityNotFoundException.class)
-	public void deleteNotFound() throws AccountServiceException, AccountServiceEntityNotFoundException {
+	@Test(expected = AccountServiceEntityNotFoundException.class)
+	public void deleteNotFound() throws AccountServiceException,
+			AccountServiceEntityNotFoundException {
 		accountPersistentService.deleteAccount(null, 99l);
 	}
-	
-	@Test(expected=AccountServiceEntityNotFoundException.class)
-	public void getNotFound() throws AccountServiceException, AccountServiceEntityNotFoundException {
+
+	@Test(expected = AccountServiceEntityNotFoundException.class)
+	public void getNotFound() throws AccountServiceException,
+			AccountServiceEntityNotFoundException {
 		accountPersistentService.getAccount(null, 99l);
-	}	
-	
+	}
+
 }

@@ -3,8 +3,8 @@ package de.smava.data;
 /**
  * @author Tomek Samcik
  *
- * Exception thrown by the service layer indicating 
- * some general service layer exception
+ *         Exception thrown by the service layer indicating some general service
+ *         layer exception
  */
 public class AccountServiceException extends Exception {
 
@@ -16,5 +16,5 @@ public class AccountServiceException extends Exception {
 	public AccountServiceException(String msg) {
 		super(msg);
 	}
-	
+
 }

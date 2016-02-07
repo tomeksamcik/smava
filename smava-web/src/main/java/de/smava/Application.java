@@ -30,53 +30,46 @@ import de.smava.data.services.AccountService;
 @EnableSwagger2
 @EnableScheduling
 @SpringBootApplication
-@ComponentScan({"de.smava.*"})
+@ComponentScan({ "de.smava.*" })
 public class Application extends SpringBootServletInitializer {
-	
+
 	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	protected SpringApplicationBuilder configure(
+			SpringApplicationBuilder application) {
 		return application.sources(Application.class);
 	}
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Application.class, args);
 	}
-	
-    /**
-     * Configuring proper service to handle CRUD
-     * operations
-     * 
-     * @return AccountService to work with the endpoint
-     */
-    @Bean
-    public AccountService accountService() {
+
+	/**
+	 * Configuring proper service to handle CRUD operations
+	 * 
+	 * @return AccountService to work with the endpoint
+	 */
+	@Bean
+	public AccountService accountService() {
 		return new AccountPersistentService();
-    }
-    
-    @Bean
-    public ConnectionFactory connectionFactory() {
-    	ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
-    	factory.setTrustAllPackages(true);
-        return factory;
-    }	    
-    
-    @Bean
-    public Docket newsApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("account")
-                .apiInfo(apiInfo())
-                .select()
-                .paths(regex("/account.*"))
-                .build();
-    }
-     
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Spring REST Sample with Swagger")
-                .description("Spring REST Sample with Swagger")
-                .contact("Tomasz Samcik")
-                .version("1.0")
-                .build();
-    }    
+	}
+
+	@Bean
+	public ConnectionFactory connectionFactory() {
+		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
+		factory.setTrustAllPackages(true);
+		return factory;
+	}
+
+	@Bean
+	public Docket newsApi() {
+		return new Docket(DocumentationType.SWAGGER_2).groupName("account")
+				.apiInfo(apiInfo()).select().paths(regex("/account.*")).build();
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder().title("Spring REST Sample with Swagger")
+				.description("Spring REST Sample with Swagger")
+				.contact("Tomasz Samcik").version("1.0").build();
+	}
 
 }

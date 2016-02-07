@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class IndexController {
-	
+
 	@RequestMapping("/")
 	public String smava(Map<String, Object> model) {
 		return "index";
 	}
-	
+
 }

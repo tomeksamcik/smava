@@ -28,25 +28,25 @@ import de.smava.data.AccountServiceNonUniqueException;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes=Application.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class AccountSessionServiceTest {
-	
+
 	private Logger log = Logger.getLogger(AccountSessionServiceTest.class);
-	
+
 	@Autowired
 	@Qualifier("accountSessionService")
 	private AccountService accountSessionService;
-	
+
 	@InjectMocks
-	MockHttpSession session = new MockHttpSession();	
-	
+	MockHttpSession session = new MockHttpSession();
+
 	@Before
 	public void purge() throws AccountServiceException {
 		log.info("session: " + session.getId());
 		accountSessionService.deleteAll(session);
 	}
-	
+
 	@Test
 	public void getAccounts() throws AccountServiceException {
 		List<Account> all = accountSessionService.getAccounts(session);
@@ -55,15 +55,20 @@ public class AccountSessionServiceTest {
 	}
 
 	@Test
-	public void getAccount() throws AccountServiceException, AccountServiceNonUniqueException, AccountServiceEntityNotFoundException {
-		Account added = accountSessionService.addAccount(session, new Account("A", "1", null));
-		Account returned = accountSessionService.getAccount(session, added.getId());
+	public void getAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException,
+			AccountServiceEntityNotFoundException {
+		Account added = accountSessionService.addAccount(session, new Account(
+				"A", "1", null));
+		Account returned = accountSessionService.getAccount(session,
+				added.getId());
 		log.info("returned: " + returned);
 		assertEquals(added, returned);
 	}
-	
+
 	@Test
-	public void addAccount() throws AccountServiceException, AccountServiceNonUniqueException {
+	public void addAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException {
 		accountSessionService.addAccount(session, new Account("A", "1", null));
 		List<Account> all = accountSessionService.getAccounts(session);
 		log.info("all: " + all);
@@ -71,10 +76,14 @@ public class AccountSessionServiceTest {
 	}
 
 	@Test
-	public void updateAccount() throws AccountServiceException, AccountServiceNonUniqueException, AccountServiceEntityNotFoundException {
+	public void updateAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException,
+			AccountServiceEntityNotFoundException {
 		log.info("updateAccount");
-		Account added = accountSessionService.addAccount(session, new Account("A", "1", null));
-		Account updated = accountSessionService.updateAccount(session, added.getId(), new Account("B", "1", null));
+		Account added = accountSessionService.addAccount(session, new Account(
+				"A", "1", null));
+		Account updated = accountSessionService.updateAccount(session,
+				added.getId(), new Account("B", "1", null));
 		List<Account> all = accountSessionService.getAccounts(session);
 		log.info("added: " + added);
 		log.info("updated: " + updated);
@@ -86,8 +95,11 @@ public class AccountSessionServiceTest {
 	}
 
 	@Test
-	public void deleteAccount() throws AccountServiceException, AccountServiceNonUniqueException, AccountServiceEntityNotFoundException {
-		Account added = accountSessionService.addAccount(session, new Account("A", "1", null));
+	public void deleteAccount() throws AccountServiceException,
+			AccountServiceNonUniqueException,
+			AccountServiceEntityNotFoundException {
+		Account added = accountSessionService.addAccount(session, new Account(
+				"A", "1", null));
 		List<Account> before = accountSessionService.getAccounts(session);
 		accountSessionService.deleteAccount(session, added.getId());
 		List<Account> after = accountSessionService.getAccounts(session);
@@ -97,25 +109,31 @@ public class AccountSessionServiceTest {
 		assertEquals(after.size(), 0);
 	}
 
-	@Test(expected=AccountServiceNonUniqueException.class)
-	public void unique() throws AccountServiceException, AccountServiceNonUniqueException {
+	@Test(expected = AccountServiceNonUniqueException.class)
+	public void unique() throws AccountServiceException,
+			AccountServiceNonUniqueException {
 		accountSessionService.addAccount(session, new Account("A", "1", null));
 		accountSessionService.addAccount(session, new Account("A", "1", null));
 	}
 
-	@Test(expected=AccountServiceEntityNotFoundException.class)
-	public void updateNotFound() throws AccountServiceException, AccountServiceEntityNotFoundException, AccountServiceNonUniqueException {
-		accountSessionService.updateAccount(session, 99l, new Account("A", "1", null));
+	@Test(expected = AccountServiceEntityNotFoundException.class)
+	public void updateNotFound() throws AccountServiceException,
+			AccountServiceEntityNotFoundException,
+			AccountServiceNonUniqueException {
+		accountSessionService.updateAccount(session, 99l, new Account("A", "1",
+				null));
 	}
 
-	@Test(expected=AccountServiceEntityNotFoundException.class)
-	public void deleteNotFound() throws AccountServiceException, AccountServiceEntityNotFoundException {
+	@Test(expected = AccountServiceEntityNotFoundException.class)
+	public void deleteNotFound() throws AccountServiceException,
+			AccountServiceEntityNotFoundException {
 		accountSessionService.deleteAccount(session, 99l);
 	}
 
-	@Test(expected=AccountServiceEntityNotFoundException.class)
-	public void getNotFound() throws AccountServiceException, AccountServiceEntityNotFoundException {
+	@Test(expected = AccountServiceEntityNotFoundException.class)
+	public void getNotFound() throws AccountServiceException,
+			AccountServiceEntityNotFoundException {
 		accountSessionService.getAccount(session, 99l);
 	}
-	
+
 }

@@ -19,17 +19,17 @@ import de.smava.Application;
  * @author Phillip Webb
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes=Application.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest
 public class RestControllerTest {
-	
+
 	private TestRestTemplate rest = new TestRestTemplate();
 
 	@Test
 	public void testRest() throws Exception {
-		ResponseEntity<String> entity = rest
-				.getForEntity("http://localhost:8080/account", String.class);
+		ResponseEntity<String> entity = rest.getForEntity(
+				"http://localhost:8080/account", String.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
-	}	
+	}
 
 }

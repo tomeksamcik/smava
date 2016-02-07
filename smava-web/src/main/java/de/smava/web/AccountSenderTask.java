@@ -11,25 +11,25 @@ import de.smava.jms.AccountSender;
 /**
  * @author Tomek Samcik
  *
- * A scheduler class executing flush accounts task
+ *         A scheduler class executing flush accounts task
  */
 @Component
 public class AccountSenderTask {
-	
-    @Autowired
-    private AccountSender accountSender;
 
-    @Autowired
-    private AccountRepository accountRepository;
-    
-    /**
-     * FLushing accounts every 10 seconds
-     */
-    @Scheduled(fixedRate = 10000)
-    public void flush() {
-    	for (Account account : accountRepository.findAll()) {
-        	accountSender.send(account);    		
-    	}
-    }
-    
+	@Autowired
+	private AccountSender accountSender;
+
+	@Autowired
+	private AccountRepository accountRepository;
+
+	/**
+	 * FLushing accounts every 10 seconds
+	 */
+	@Scheduled(fixedRate = 10000)
+	public void flush() {
+		for (Account account : accountRepository.findAll()) {
+			accountSender.send(account);
+		}
+	}
+
 }

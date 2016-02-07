@@ -25,21 +25,20 @@ import de.smava.Application;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public class WebControllerTest {
-	
+
 	private MockMvc mockMvc;
-	
-    @Autowired
-    private WebApplicationContext webApplicationContext;	
-    
-    @Before
-    public void setup() throws Exception {
-        this.mockMvc = webAppContextSetup(webApplicationContext).build();
-    }    
+
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
+	@Before
+	public void setup() throws Exception {
+		this.mockMvc = webAppContextSetup(webApplicationContext).build();
+	}
 
 	@Test
 	public void testWeb() throws Exception {
-		mockMvc.perform(get("/"))
-			.andExpect(status().isOk());
-	}	
+		mockMvc.perform(get("/")).andExpect(status().isOk());
+	}
 
 }

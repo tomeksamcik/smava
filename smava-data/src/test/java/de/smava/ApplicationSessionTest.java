@@ -13,18 +13,18 @@ import de.smava.data.services.AccountSessionService;
  * @author Tomek Samcik
  *
  */
-@Configuration 
-@EnableAutoConfiguration 
+@Configuration
+@EnableAutoConfiguration
 @ComponentScan("de.smava.*")
 public class ApplicationSessionTest {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ApplicationSessionTest.class, args);
-    }
-    
-    @Bean
-    public AccountService accountService() {
+	public static void main(String[] args) {
+		SpringApplication.run(ApplicationSessionTest.class, args);
+	}
+
+	@Bean
+	public AccountService accountService() {
 		return new AccountSessionService();
-    }    
-    
+	}
+
 }

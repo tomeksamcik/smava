@@ -21,21 +21,21 @@ import de.smava.data.Account;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 public class AccountReceiverTest {
-	
-    @Autowired
-    private AccountReceiver accountReceiver;
 
-    @Autowired
-    private AccountSender accountSender;
-    
-    @Test
-    public void sendSimpleMessage() {
-    	accountSender.send(new Account("AAA", "111", null));
-        
-        Optional<Account> received = accountReceiver.getLastReceived();
-        
-        assertTrue(received.isPresent());
-        assertEquals("111", received.get().getIban());
-    }
-    
+	@Autowired
+	private AccountReceiver accountReceiver;
+
+	@Autowired
+	private AccountSender accountSender;
+
+	@Test
+	public void sendSimpleMessage() {
+		accountSender.send(new Account("AAA", "111", null));
+
+		Optional<Account> received = accountReceiver.getLastReceived();
+
+		assertTrue(received.isPresent());
+		assertEquals("111", received.get().getIban());
+	}
+
 }

@@ -10,10 +10,10 @@
 	<artifactId>smava-web</artifactId>
 	<packaging>war</packaging>
 	<name>smava-web</name>
-	
+
 	<properties>
 		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
-	</properties>	
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -45,19 +45,19 @@
 			<version>2.2.2</version>
 			<scope>compile</scope>
 		</dependency>
-        
+
 		<dependency>
 			<groupId>de.smava</groupId>
 			<artifactId>smava-rest</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>de.smava</groupId>
 			<artifactId>smava-jms-producer</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>		
-	</dependencies>	
-	
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -72,6 +72,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>	
+	</build>
 
 </project>

@@ -18,21 +18,21 @@ import de.smava.data.services.AccountService;
 @SpringBootApplication
 @EnableJms
 public class Application {
-	
-    @Bean
-    public ConnectionFactory connectionFactory() {
-    	ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
-    	factory.setTrustAllPackages(true);
-        return factory;
-    }
-    
-    @Bean
-    public AccountService accountService() {
-		return new AccountPersistentService();
-    }        
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+	@Bean
+	public ConnectionFactory connectionFactory() {
+		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
+		factory.setTrustAllPackages(true);
+		return factory;
+	}
+
+	@Bean
+	public AccountService accountService() {
+		return new AccountPersistentService();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
 }

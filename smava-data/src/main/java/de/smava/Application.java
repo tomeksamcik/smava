@@ -13,18 +13,18 @@ import de.smava.data.services.AccountService;
  * @author Tomek Samcik
  *
  */
-@Configuration 
-@EnableAutoConfiguration 
+@Configuration
+@EnableAutoConfiguration
 @ComponentScan("de.smava.*")
 public class Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-    
-    @Bean
-    public AccountService accountService() {
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	public AccountService accountService() {
 		return new AccountPersistentService();
-    }    
-    
+	}
+
 }
