@@ -61,7 +61,7 @@ mvn clean package
 
 #### Configuration
 
-The only configuration needed is selecting data storage, it can either be a <code>h2</code> in-memory persisted storage or serializing data in http session.
+The only configuration needed is selecting data storage, it can either be a <code>h2</code> in-memory persisted storage or http session storage.
 
 Confugiration has to be made in <code>de.smava.Application</code> class in <code>smava-web</code> module.
 
