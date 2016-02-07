@@ -85,7 +85,7 @@ return new AccountSessionService();
 
 #### Notes
 
-* RESTful endpoint is based on Spring MVC rather then Jetty, because Jetty conflicted with the Spring Boot embedded web container. Spring Boot simplifies bootstrapping applications, but makes it more troublesome to customize things.
+* RESTful endpoint is based on Spring MVC rather then JAX-RS, because Jetty conflicted with the Spring Boot embedded web container. Spring Boot simplifies bootstrapping applications, but makes it more troublesome to customize things.
 * Endpoint descriptor is done with Swagger rather then WADL, because there is no out-of-the-box support for WADL in Spring MVC.  There are some custom solutions, but hard to implement
 * I haven't found a tool for client code generation based on Swagger descriptors
 * Swagger UI is available after runnig the application at <code>http://localhost:8080/swagger-ui.html</code>
