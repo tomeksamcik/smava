@@ -67,7 +67,7 @@ Confugiration has to be made in <code>de.smava.Application</code> class in <code
 
 ###### Persistent storage:
 
-```java
+```javascript
 @Bean
 public AccountService accountService() {
 return new AccountPersistentService();
@@ -76,7 +76,7 @@ return new AccountPersistentService();
 
 ###### Session-based storage:
 
-```java
+```javascript
 @Bean
 public AccountService accountService() {
 return new AccountSessionService();
