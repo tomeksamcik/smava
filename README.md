@@ -69,8 +69,8 @@ Confugiration has to be made in <code>de.smava.Application</code> class in <code
 
 ```javascript
 @Bean
-public AccountService accountService() {
-return new AccountPersistentService();
+  public AccountService accountService() {
+  return new AccountPersistentService();
 }
 ```
 
@@ -78,8 +78,8 @@ return new AccountPersistentService();
 
 ```javascript
 @Bean
-public AccountService accountService() {
-return new AccountSessionService();
+  public AccountService accountService() {
+  return new AccountSessionService();
 }
 ```
 
