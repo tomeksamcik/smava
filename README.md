@@ -18,7 +18,7 @@ smava
 
 #### About
 
-Application consists of six modules, four from which build the web application, one is a standalone jms client and one is a parent for the web app.
+Application consists of six modules, four from which build the web application, one is a standalone jms client and the remaining one is a parent for the web app.
 
 * <code>smava-data</code> - Data related services 
 * <code>smava-jms-consumer</code> - Standalone JMS consumer
@@ -29,7 +29,7 @@ Application consists of six modules, four from which build the web application, 
 
 #### Building application
 
-This will run the build and install all the modules within local Maven repository:
+This will run the build and install all the <code>smava-parent</code> submodules in local Maven repository:
 
 ```
 cd smava-parent
@@ -45,14 +45,14 @@ mvn clean install
 
 #### Running application
 
-This launches the application in an embedded Tomcat instance running on port 8080 (running application also requires a running ActiveMQ broker)
+This launches the application in an embedded Tomcat instance running on port <code>8080</code> (running application also requires a running ActiveMQ broker)
 
 ```
 cd smava-web
 mvn spring-boot:run
 ```
 
-This builds a war file that is deployable in a servlet container (I only tested with Tomcat 7)
+This builds a <code>war</code> file that is deployable in a servlet container (I only tested with Tomcat 7)
 
 ```
 cd smava-web
@@ -61,7 +61,7 @@ mvn clean package
 
 #### Configuration
 
-The only configuration needed is selecting data storage, it can either be a h2 in-memory persisted storage or serializing data in http session.
+The only configuration needed is selecting data storage, it can either be a <code>h2</code> in-memory persisted storage or serializing data in http session.
 
 Confugiration has to be made in <code>de.smava.Application</code> class in <code>smava-web</code> module.
 
@@ -87,6 +87,7 @@ return new AccountSessionService();
 
 * RESTful endpoint is based on Spring MVC rather then Jetty, because Jetty conflicted with the Spring Boot embedded web container. Spring Boot simplifies bootstrapping applications, but makes it more troublesome to customize things.
 * Endpoint descriptor is done with Swagger rather then WADL, because there is no out-of-the-box support for WADL in Spring MVC.  There are some custom solutions, but hard to implement
-* Swagger UI is available at <code>http://localhost:8080/swagger-ui.html</code>
+* I haven't found a tool for client code generation based on Swagger descriptors
+* Swagger UI is available after runnig the application at <code>http://localhost:8080/swagger-ui.html</code>
 * Swagger API descriptor is available at <code>http://localhost:8080/v2/api-docs?group=account</code>
 * Account API is available at <code>http://localhost:8080/account</code>
