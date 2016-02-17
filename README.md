@@ -52,6 +52,13 @@ cd smava-web
 mvn spring-boot:run
 ```
 
+This runs the standalone jms consumer module connecting to the local jms broker instance.
+
+```
+cd smava-jms-consumer
+mvn spring-boot:run
+```
+
 This builds a <code>war</code> file that is deployable in a servlet container (I only tested with Tomcat 7)
 
 ```
